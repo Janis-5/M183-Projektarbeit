@@ -9,7 +9,7 @@ if($_SERVER['SERVER_NAME'] == 'localhost')
 	define('DBPASS', '');
 	define('DBDRIVER', '');
 	
-	define('ROOT', 'http://localhost/mvc/public');
+	define('ROOT', 'http://localhost/public');
 
 }else
 {
@@ -24,8 +24,8 @@ if($_SERVER['SERVER_NAME'] == 'localhost')
 
 }
 
-define('APP_NAME', "My Webiste");
-define('APP_DESC', "Best website on the planet");
+define('APP_NAME', "M183 Project");
+define('APP_DESC', "Project Blog");
 
 /** true means show errors **/
 define('DEBUG', true);
