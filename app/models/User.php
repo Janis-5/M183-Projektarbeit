@@ -6,14 +6,12 @@
  */
 class User
 {
-	
 	use Model;
 
-	protected $table = 'users';
+	protected $table = 'user';
 
 	protected $allowedColumns = [
-
-		'email',
+		'username',
 		'password',
 	];
 
@@ -21,23 +19,24 @@ class User
 	{
 		$this->errors = [];
 
-		if(empty($data['email']))
+		if(empty($data['username']))
 		{
-			$this->errors['email'] = "Email is required";
-		}else
-		if(!filter_var($data['email'],FILTER_VALIDATE_EMAIL))
-		{
-			$this->errors['email'] = "Email is not valid";
+			$this->errors['username'] = "Username is required";
 		}
 		
 		if(empty($data['password']))
 		{
 			$this->errors['password'] = "Password is required";
 		}
-		
-		if(empty($data['terms']))
+
+		if(empty($data['passwordrepeat']))
 		{
-			$this->errors['terms'] = "Please accept the terms and conditions";
+			$this->errors['passwordrepeat'] = "Password Repeat is required";
+		}
+
+		if($data['password'] != $data['passwordrepeat'])
+		{
+			$this->errors['passwordmatch'] = "Password and Password Repeat do not match";
 		}
 
 		if(empty($this->errors))

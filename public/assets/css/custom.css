@@ -1,0 +1,14 @@
+body{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+section{
+    padding: 60px 0;
+}
+
+.Error{
+    color: #842029;
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
+}

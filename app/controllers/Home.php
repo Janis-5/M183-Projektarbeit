@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /**
  * home class
@@ -9,8 +9,12 @@ class Home
 
 	public function index()
 	{
+		$data = [];
 
-		$this->view('home');
+		//get all To-Do's for view
+		$allposts = new Post;
+		$data['posts'] = $allposts->findall();
+
+		$this->view('home', $data);
 	}
-
 }
