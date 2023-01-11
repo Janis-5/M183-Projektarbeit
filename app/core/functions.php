@@ -18,3 +18,11 @@ function redirect($path)
 	header("Location: " . ROOT."/".$path);
 	die;
 }
+
+function getCreatorName($id){
+	$user = new User;
+	$arr['id'] = $id;
+
+	$row = $user->first($arr);
+	return $row->username;
+}

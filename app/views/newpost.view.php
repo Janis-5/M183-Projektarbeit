@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>New Post</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
@@ -30,22 +30,20 @@
                                 </div>
                             <?php endif; ?>
 
-                            <legend>Register</legend>
+                            <legend>New Post</legend>
                             <div>
-                                <label for="inputUsername" class="form-label">Username</label>
-                                <input type="text" class="form-control" id="inputUsername" name="username">
+                                <label for="inputTitle" class="form-label">Title</label>
+                                <input type="text" class="form-control" id="inputTitle" name="title">
                             </div>
-                            <div>
-                                <label for="inputPassword" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="inputPassword" name="password">
+
+                            <div class="mb-3">
+                                <label for="inputDescription" class="col-form-label">Description:</label>
+                                <textarea class="form-control" id="inputDescription" name="description"></textarea>
                             </div>
-                            <div>
-                                <label for="inputPasswordRepeat" class="form-label">Repeat Password</label>
-                                <input type="password" class="form-control" id="inputPasswordRepeat" name="passwordrepeat">
-                            </div>
+                            
                             <div class="mt-3">
-                                <button type="submit" class="btn btn-primary">Register</button>
-                                <a href="<?=ROOT?>/login">Login</a>
+                                <button type="submit" class="btn btn-primary">Add Post</button>
+                                <a href="<?=ROOT?>/dashboard" class="btn btn-secondary">Cancel</a>
                             </div>
                         </form>
                     </div>

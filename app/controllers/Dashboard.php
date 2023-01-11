@@ -15,31 +15,27 @@ class Dashboard
 			$data = [];
 
 			//get all To-Do's for view
-			$allposts = new Post;
-			$data['posts'] = $allposts->findall();
+			$myposts = new Post;
+			$arr['creator_id'] = $_SESSION['USER']->id;
+			$arr['status'] = '0 or 1';
+			$data['posts'] = $myposts->where($arr);
 
 			if ($_SERVER['REQUEST_METHOD'] == "POST") {
 				$post = new Post;
 
-				if (!empty($_POST['delete'])) {
+				/*if (!empty($_POST['status'])) {
 					$post->delete($_POST['delete']);
 					redirect('home');
 				}
-				elseif ($post->validate($_POST)) {
-
-					if (!empty($_POST['id'])) {
-						if (empty($_POST['isdone'])) {
-							$_POST['isdone'] = "0";
-						}
-						$post->update($_POST['id'], $_POST);
-					} else {
-						$_POST["creator_id"] = strval($_SESSION['USER']->id);
-						$post->insert($_POST);
-					}
-					redirect('home');
+				else*/
+				if (!empty($_POST['delete'])) {
+					$_POST['id'] = $_POST['delete'];
+					$_POST['status'] = 2;
 				}
 
-				$data['errors'] = $post->errors;
+				$post->update($_POST['id'], $_POST);
+
+				redirect('dashboard');
 			}
 
 			$this->view('dashboard', $data);

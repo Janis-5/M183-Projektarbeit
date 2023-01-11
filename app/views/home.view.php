@@ -34,6 +34,7 @@
                                 <div class="card-body">
                                     <p class="card-text"><?= $post->description ?></p>
                                 </div>
+                                <div class="card-footer"><?= getCreatorName($post->creator_id) ?></div>
                             </div>
                         </div>
                     <? } ?>
@@ -41,7 +42,6 @@
         </section>
     </main>
     <? include("global/footer.view.php"); ?>
-    <script src="<?= ROOT ?>/assets/js/homeModal.js"></script>
 </body>
 
 </html>
