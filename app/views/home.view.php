@@ -21,23 +21,24 @@
         <section>
             <div class="container">
                 <div class="row row-cols-md-4 row-cols-sm-2">
-                    <? foreach ($posts as $post) { ?>
+                    <? if (empty($posts)) { ?>
+                        <div>No Posts yet</div>
+                    <? } else { ?>
+                        <? foreach ($posts as $post) { ?>
 
-                        <div class="col">
-                            <div class="card mb-3">
-                                <div class="card-header <?
-                                                        if ($post->status == 1) { ?>
-                                    text-white bg-success
-                                <? } ?>">
-                                    <h5 class="card-title"><?= $post->title ?></h5>
+                            <div class="col">
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        <h5 class="card-title"><?= $post->title ?></h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-text"><?= $post->description ?></p>
+                                    </div>
+                                    <div class="card-footer"><?= getCreatorName($post->creator_id) ?></div>
                                 </div>
-                                <div class="card-body">
-                                    <p class="card-text"><?= $post->description ?></p>
-                                </div>
-                                <div class="card-footer"><?= getCreatorName($post->creator_id) ?></div>
                             </div>
-                        </div>
-                    <? } ?>
+                    <? }
+                    } ?>
                 </div>
         </section>
     </main>

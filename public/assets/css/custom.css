@@ -1,14 +1,24 @@
-body{
+body {
     max-width: 1200px;
     margin: 0 auto;
 }
 
-section{
+section {
     padding: 60px 0;
 }
 
-.Error{
+.Error {
     color: #842029;
     background-color: #f8d7da;
     border-color: #f5c2c7;
+}
+
+.status {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.nav-tabs{
+    display: none;
 }

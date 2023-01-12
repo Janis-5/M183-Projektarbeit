@@ -22,6 +22,16 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 offset-md-4">
+
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="cred-tab" data-bs-toggle="tab" data-bs-target="#cred" type="button" role="tab" aria-controls="cred" aria-selected="true">Cred</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="phone-tab" data-bs-toggle="tab" data-bs-target="#phone" type="button" role="tab" aria-controls="phone" aria-selected="false">Phone</button>
+                            </li>
+                        </ul>
+
                         <form method="POST">
 
                             <?php if (!empty($errors)) : ?>
@@ -30,22 +40,43 @@
                                 </div>
                             <?php endif; ?>
 
-                            <legend>Register</legend>
-                            <div>
-                                <label for="inputUsername" class="form-label">Username</label>
-                                <input type="text" class="form-control" id="inputUsername" name="username">
-                            </div>
-                            <div>
-                                <label for="inputPassword" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="inputPassword" name="password">
-                            </div>
-                            <div>
-                                <label for="inputPasswordRepeat" class="form-label">Repeat Password</label>
-                                <input type="password" class="form-control" id="inputPasswordRepeat" name="passwordrepeat">
-                            </div>
-                            <div class="mt-3">
-                                <button type="submit" class="btn btn-primary">Register</button>
-                                <a href="<?=ROOT?>/login">Login</a>
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="cred" role="tabpanel" aria-labelledby="cred-tab">
+                                    <legend>Register</legend>
+                                    <div>
+                                        <label for="inputUsername" class="form-label">Username</label>
+                                        <input type="text" class="form-control" id="inputUsername" name="username">
+                                    </div>
+                                    <div>
+                                        <label for="inputPassword" class="form-label">Password</label>
+                                        <input type="password" class="form-control" id="inputPassword" name="password">
+                                    </div>
+                                    <div>
+                                        <label for="inputPasswordRepeat" class="form-label">Repeat Password</label>
+                                        <input type="password" class="form-control" id="inputPasswordRepeat" name="passwordrepeat">
+                                    </div>
+                                    <div class="mt-3">
+                                        <button onclick="changeTab()" type="button" class="btn btn-primary">Continue</button>
+                                        <a href="<?= ROOT ?>/login">Login</a>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="phone" role="tabpanel" aria-labelledby="phone-tab">
+                                    <legend>2FA with Phone Number</legend>
+                                    <div>
+                                        <label for="inputPhone" class="form-label">Phone Number</label>
+                                        <input type="text" class="form-control" id="inputPhone" name="phone">
+                                    </div>
+                                    <div class="mb-3 mt-3">
+                                        <button type="button" onclick="sendToken('inputPhone')" class="btn btn-primary">Send Token</button>
+                                    </div>
+                                    <div>
+                                        <label for="inputToken" class="form-label">Token</label>
+                                        <input type="number" class="form-control" id="inputToken" name="token">
+                                    </div>
+                                    <div class="mt-3">
+                                        <button type="submit" class="btn btn-primary">Register</button>
+                                    </div>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -54,6 +85,7 @@
         </section>
     </main>
     <? include("global/footer.view.php"); ?>
+    <script src="<?= ROOT ?>/assets/js/main.js"></script>
 </body>
 
 </html>

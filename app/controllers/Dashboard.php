@@ -17,23 +17,17 @@ class Dashboard
 			//get all To-Do's for view
 			$myposts = new Post;
 			$arr['creator_id'] = $_SESSION['USER']->id;
-			$arr['status'] = '0 or 1';
-			$data['posts'] = $myposts->where($arr);
+			$narr['status'] = '2';
+			$data['posts'] = $myposts->where($arr, $narr);
 
 			if ($_SERVER['REQUEST_METHOD'] == "POST") {
 				$post = new Post;
 
-				/*if (!empty($_POST['status'])) {
-					$post->delete($_POST['delete']);
-					redirect('home');
-				}
-				else*/
 				if (!empty($_POST['delete'])) {
 					$_POST['id'] = $_POST['delete'];
 					$_POST['status'] = 2;
+					$post->update($_POST['id'], $_POST);
 				}
-
-				$post->update($_POST['id'], $_POST);
 
 				redirect('dashboard');
 			}

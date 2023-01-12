@@ -12,8 +12,9 @@ class Home
 		$data = [];
 
 		//get all To-Do's for view
-		$allposts = new Post;
-		$data['posts'] = $allposts->findall();
+		$publishedposts = new Post;
+		$arr['status'] = '1';
+		$data['posts'] = $publishedposts->where($arr);
 
 		$this->view('home', $data);
 	}
