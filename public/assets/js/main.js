@@ -10,6 +10,37 @@ function deletePost(id) {
     //myobj.remove();
 }
 
+function checkRegister(username, password, passwordRepeat) {
+    un = document.getElementById(username).value;
+    pw = document.getElementById(password).value;
+    pwr = document.getElementById(passwordRepeat).value;
+
+    [...document.getElementsByClassName('alert-danger')].forEach(el => {
+        el.style.display = 'none';
+    });
+
+    var request = new XMLHttpRequest();
+    request.open("POST", "Ajax");
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    request.send("username=" + un + "&password=" + pw + "&passwordrepeat=" + pwr + "&type=checkRegister");
+
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            const errors = JSON.parse(request.responseText);
+
+            if (Object.keys(errors).length != 0) {
+                for (const [key, value] of Object.entries(errors)) {
+                    const el = document.getElementById('alert' + key);
+                    el.style.display = 'block';
+                    el.innerText = value;
+                }
+            }else{
+                changeTab();
+            }
+        }
+    }
+}
+
 function changeTab() {
     var someTabTriggerEl = document.querySelector('#phone-tab')
     var tab = new bootstrap.Tab(someTabTriggerEl)
@@ -20,8 +51,8 @@ function changeTab() {
 function sendToken(id) {
     let phone = document.getElementById(id).value;
 
-    var request = new XMLHttpRequest();
-    request.open("POST", "ajax");
+    let request = new XMLHttpRequest();
+    request.open("POST", "Ajax");
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    request.send("phone="+phone+"");
+    request.send("phone=" + phone + "&type=sendToken");
 }

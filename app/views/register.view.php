@@ -45,26 +45,35 @@
                                     <legend>Register</legend>
                                     <div>
                                         <label for="inputUsername" class="form-label">Username</label>
-                                        <input type="text" class="form-control" id="inputUsername" name="username">
+                                        <input type="text" class="form-control" id="inputUsername" name="username" required>
+                                        <div id="alertUsername" class="alert alert-danger" role="alert" style="display: none;"></div>
                                     </div>
-                                    <div>
+                                    <div class="mb-2">
                                         <label for="inputPassword" class="form-label">Password</label>
-                                        <input type="password" class="form-control" id="inputPassword" name="password">
+                                        <input type="password" class="form-control" id="inputPassword" name="password" required>
+                                        <div class="form-text">
+                                            min. 8 characters, contain letters, numbers, special characters
+                                        </div>
+                                        <div id="alertPassword" class="alert alert-danger" role="alert" style="display: none;"></div>
                                     </div>
                                     <div>
                                         <label for="inputPasswordRepeat" class="form-label">Repeat Password</label>
-                                        <input type="password" class="form-control" id="inputPasswordRepeat" name="passwordrepeat">
+                                        <input type="password" class="form-control" id="inputPasswordRepeat" name="passwordrepeat" required>
+                                        <div id="alertPasswordRepeat" class="alert alert-danger" role="alert" style="display: none;"></div>
                                     </div>
                                     <div class="mt-3">
-                                        <button onclick="changeTab()" type="button" class="btn btn-primary">Continue</button>
+                                        <button onclick="checkRegister('inputUsername','inputPassword','inputPasswordRepeat')" type="button" class="btn btn-primary">Continue</button>
                                         <a href="<?= ROOT ?>/login">Login</a>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="phone" role="tabpanel" aria-labelledby="phone-tab">
                                     <legend>2FA with Phone Number</legend>
-                                    <div>
+                                    <div class="mb-2">
                                         <label for="inputPhone" class="form-label">Phone Number</label>
                                         <input type="text" class="form-control" id="inputPhone" name="phone">
+                                        <div class="form-text">
+                                            Format: 417********
+                                        </div>
                                     </div>
                                     <div class="mb-3 mt-3">
                                         <button type="button" onclick="sendToken('inputPhone')" class="btn btn-primary">Send Token</button>
