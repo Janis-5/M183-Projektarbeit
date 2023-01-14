@@ -29,12 +29,14 @@
                             <div class="col">
                                 <div class="card mb-3">
                                     <div class="card-header">
-                                        <h5 class="card-title"><?= $post->title ?></h5>
+                                        <?= getCreatorName($post->creator_id) ?>
                                     </div>
                                     <div class="card-body">
-                                        <p class="card-text"><?= $post->description ?></p>
+                                        <h5 class="card-title"><?= $post->title ?></h5>
                                     </div>
-                                    <div class="card-footer"><?= getCreatorName($post->creator_id) ?></div>
+                                    <div class="card-footer">
+                                        <a class="btn btn-primary" href="<?= ROOT ?>/detail?post=<?= $post->id ?>">Detail</a>
+                                    </div>
                                 </div>
                             </div>
                     <? }

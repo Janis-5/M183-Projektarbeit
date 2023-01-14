@@ -11,7 +11,7 @@ class Home
 	{
 		$data = [];
 
-		//get all To-Do's for view
+		//get all Posts for view
 		$publishedposts = new Post;
 		$arr['status'] = '1';
 		$data['posts'] = $publishedposts->where($arr);

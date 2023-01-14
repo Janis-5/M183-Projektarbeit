@@ -36,19 +36,18 @@
                                         <? } elseif ($post->status == 2) { ?>
                                             <span class="badge text-bg-danger status">Deleted</span>
                                         <? } ?>
-                                        <h5 class="card-title"><?= $post->title ?></h5>
+                                        <?= getCreatorName($post->creator_id) ?>
                                     </div>
                                     <div class="card-body">
-                                        <p class="card-text"><?= $post->description ?></p>
+                                        <h5 class="card-title"><?= $post->title ?></h5>
                                     </div>
                                     <div class="card-footer">
-                                        <?= getCreatorName($post->creator_id) ?>
                                         <form method="POST">
-                                            <input type="hidden" name="id" value="<?= $post->id?>">
+                                            <input type="hidden" name="id" value="<?= $post->id ?>">
                                             <select name="status" class="form-select" aria-label="Default select example" onchange="this.form.submit()">
-                                                <option <?if($post->status == 0){?>selected<?}?> value="0">Hidden</option>
-                                                <option <?if($post->status == 1){?>selected<?}?> value="1">Published</option>
-                                                <option <?if($post->status == 2){?>selected<?}?> value="2">Deleted</option>
+                                                <option <? if ($post->status == 0) { ?>selected<? } ?> value="0">Hidden</option>
+                                                <option <? if ($post->status == 1) { ?>selected<? } ?> value="1">Published</option>
+                                                <option <? if ($post->status == 2) { ?>selected<? } ?> value="2">Deleted</option>
                                             </select>
                                         </form>
                                     </div>

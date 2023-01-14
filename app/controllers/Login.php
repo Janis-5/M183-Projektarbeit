@@ -20,6 +20,7 @@ class Login
 			if ($row && password_verify($_POST['password'], $row->password)) {
 				if ($_POST['token'] == $_SESSION['TOKEN']) {
 					$_SESSION['USER'] = $row;
+					unset($_SESSION['TOKEN']);
 
 					redirect('dashboard');
 				} else {

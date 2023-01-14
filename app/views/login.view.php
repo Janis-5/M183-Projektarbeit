@@ -69,7 +69,7 @@
                                         <div id="successToken" class="alert alert-success" role="alert" style="display: none;"></div>
                                     </div>
                                     <div class="mt-3">
-                                        <button type="submit" class="btn btn-primary">Login</button>
+                                        <button type="button" onclick="form.submit()" class="btn btn-primary">Login</button>
                                     </div>
                                 </div>
                             </div>

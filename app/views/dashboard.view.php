@@ -33,16 +33,13 @@
 
                             <div class="col">
                                 <div class="card mb-3">
-                                    <div class="card-header">
-                                        <?if ($post->status == 0) {?>
-                                            <span class="badge text-bg-secondary status">Hidden</span>
-                                        <?}elseif ($post->status == 1) {?>
-                                            <span class="badge text-bg-primary status">Published</span>
-                                        <?}?>
-                                        <h5 class="card-title"><?= $post->title ?></h5>
-                                    </div>
                                     <div class="card-body">
-                                        <p class="card-text"><?= $post->description ?></p>
+                                        <? if ($post->status == 0) { ?>
+                                            <span class="badge text-bg-secondary status">Hidden</span>
+                                        <? } elseif ($post->status == 1) { ?>
+                                            <span class="badge text-bg-primary status">Published</span>
+                                        <? } ?>
+                                        <h5 class="card-title"><?= $post->title ?></h5>
                                     </div>
                                     <div class="card-footer">
                                         <form method="POST">

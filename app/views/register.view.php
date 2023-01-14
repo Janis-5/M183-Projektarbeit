@@ -95,7 +95,7 @@
                                         </div>
                                     </div>
                                     <div class="mt-3">
-                                        <button type="submit" class="btn btn-primary">Register</button>
+                                        <button type="button" onclick="form.submit()" class="btn btn-primary">Register</button>
                                     </div>
                                 </div>
                             </div>
