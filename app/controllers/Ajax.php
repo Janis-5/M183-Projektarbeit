@@ -18,8 +18,7 @@ class Ajax
                 $row = $user->first($arr);
 
                 if (!$row) {
-                    if ($user->validate($_POST)) {
-                    }
+                    $user->validate($_POST);
                 } else {
                     $user->errors['Username'] = 'Username already exists';
                 }

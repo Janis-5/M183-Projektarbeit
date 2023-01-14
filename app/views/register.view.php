@@ -43,22 +43,28 @@
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade show active" id="cred" role="tabpanel" aria-labelledby="cred-tab">
                                     <legend>Register</legend>
-                                    <div>
+                                    <div class="mb-2">
                                         <label for="inputUsername" class="form-label">Username</label>
                                         <input type="text" class="form-control" id="inputUsername" name="username" required>
+                                        <div class="form-text">
+                                            3-16 characters, only letters, numbers, "-" and "_"
+                                        </div>
                                         <div id="alertUsername" class="alert alert-danger" role="alert" style="display: none;"></div>
                                     </div>
                                     <div class="mb-2">
                                         <label for="inputPassword" class="form-label">Password</label>
                                         <input type="password" class="form-control" id="inputPassword" name="password" required>
                                         <div class="form-text">
-                                            min. 8 characters, contain letters, numbers, special characters
+                                            8-20 characters, must contain letter(lowercase and capital), number and special character
                                         </div>
                                         <div id="alertPassword" class="alert alert-danger" role="alert" style="display: none;"></div>
                                     </div>
-                                    <div>
+                                    <div class="mb-2">
                                         <label for="inputPasswordRepeat" class="form-label">Repeat Password</label>
                                         <input type="password" class="form-control" id="inputPasswordRepeat" name="passwordrepeat" required>
+                                        <div class="form-text">
+                                            Must match password
+                                        </div>
                                         <div id="alertPasswordRepeat" class="alert alert-danger" role="alert" style="display: none;"></div>
                                     </div>
                                     <div class="mt-3">
@@ -72,15 +78,21 @@
                                         <label for="inputPhone" class="form-label">Phone Number</label>
                                         <input type="text" class="form-control" id="inputPhone" name="phone">
                                         <div class="form-text">
-                                            Format: 417********
+                                            e.g 417********
                                         </div>
+                                        <div id="alertPhone" class="alert alert-danger" role="alert" style="display: none;"></div>
                                     </div>
                                     <div class="mb-3 mt-3">
                                         <button type="button" onclick="sendToken('inputPhone')" class="btn btn-primary">Send Token</button>
+                                        <div id="dangerToken" class="alert alert-danger" role="alert" style="display: none;"></div>
+                                        <div id="successToken" class="alert alert-success" role="alert" style="display: none;"></div>
                                     </div>
                                     <div>
                                         <label for="inputToken" class="form-label">Token</label>
                                         <input type="number" class="form-control" id="inputToken" name="token">
+                                        <div class="form-text">
+                                            e.g 123456
+                                        </div>
                                     </div>
                                     <div class="mt-3">
                                         <button type="submit" class="btn btn-primary">Register</button>

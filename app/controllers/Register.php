@@ -26,9 +26,15 @@ class Register
 					if ($user->validate($_POST, true)) {
 						$_POST['password'] = password_hash($_POST['password'], PASSWORD_ARGON2I);
 						$user->insert($_POST);
-
 						unset($_SESSION['TOKEN']);
-						redirect('login');
+
+						//Auto Login after Register
+						$user1 = new User;
+						$arr1['username'] = $_POST['username'];
+
+						$row1 = $user1->first($arr1);
+						$_SESSION['USER'] = $row1;
+						redirect('dashboard');
 					}
 				} else {
 					$user->errors['username'] = "Username already exists";
