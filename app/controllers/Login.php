@@ -17,15 +17,17 @@ class Login
 
 			$row = $user->first($arr);
 
-			if ($row) {
-				if (password_verify($_POST['password'], $row->password)) {
+			if ($row && password_verify($_POST['password'], $row->password)) {
+				if ($_POST['token'] == $_SESSION['TOKEN']) {
 					$_SESSION['USER'] = $row;
-					
-					redirect('dashboard');
-				}
-			}
 
-			$user->errors['username'] = "Wrong username or password";
+					redirect('dashboard');
+				} else {
+					$user->errors['Token'] = "SMS Token not correct";
+				}
+			} else {
+				$user->errors['Login'] = "Wrong username or password";
+			}
 
 			$data['errors'] = $user->errors;
 		}

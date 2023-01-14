@@ -27,32 +27,24 @@ class Ajax
                 echo $return;
                 break;
 
-            case 'sendToken':
-                $_SESSION['TOKEN'] = strval(rand(100000, 999999));
+            case 'checkLogin':
+                $user = new User;
+                $arr['username'] = $_POST['username'];
 
-                $fields = json_encode(array(
-                    "mobileNumber" => $_POST['phone'],
-                    "message" => $_SESSION['TOKEN']
-                ));
+                $row = $user->first($arr);
 
-                $curl_session = curl_init();
-                curl_setopt($curl_session, CURLOPT_URL, "https://m183.gibz-informatik.ch/api/sms/message");
-                curl_setopt($curl_session, CURLOPT_CUSTOMREQUEST, "POST");
-                curl_setopt($curl_session, CURLOPT_POSTFIELDS, $fields);
-                curl_setopt(
-                    $curl_session,
-                    CURLOPT_HTTPHEADER,
-                    array(
-                        'Content-Type: application/json',
-                        'X-Api-Key: NQAxADgAMAA2ADgAMwA2ADgAMgAyADYANAAzADQANgA5ADUA'
-                    )
-                );
-                curl_exec($curl_session);
-                curl_close($curl_session);
+                if (!$row || !password_verify($_POST['password'], $row->password)) {
+                    $user->errors['Login'] = "Wrong username or password";
+                } else {
+                    sendToken($row->phone);
+                }
+
+                $return = json_encode($user->errors);
+                echo $return;
                 break;
 
-            case 2:
-                echo "i ist gleich 2";
+            case 'sendToken':
+                sendToken($_POST['phone']);
                 break;
         }
     }

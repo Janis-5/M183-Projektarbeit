@@ -41,6 +41,51 @@ function checkRegister(username, password, passwordRepeat) {
     }
 }
 
+function checkLogin(username, password) {
+    const tokensuccess = document.getElementById('successToken');
+    tokensuccess.style.display = 'none';
+
+    const tokendanger = document.getElementById('dangerToken');
+    tokendanger.style.display = 'none';
+
+    un = document.getElementById(username).value;
+    pw = document.getElementById(password).value;
+
+    [...document.getElementsByClassName('alert-danger')].forEach(el => {
+        el.style.display = 'none';
+    });
+
+    var request = new XMLHttpRequest();
+    request.open("POST", "Ajax");
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    request.send("username=" + un + "&password=" + pw + "&type=checkLogin");
+
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            const errors = JSON.parse(request.responseText);
+
+            if (Object.keys(errors).length != 0) {
+                for (const [key, value] of Object.entries(errors)) {
+                    const el = document.getElementById('alert' + key);
+                    el.style.display = 'block';
+                    el.innerText = value;
+                }
+            } else {
+                changeTab();
+                console.log(request.responseText);
+
+                if (!request.responseText || request.responseText == '[]') {
+                    tokensuccess.style.display = 'block';
+                    tokensuccess.innerText = 'Token send';
+                } else {
+                    tokendanger.style.display = 'block';
+                    tokendanger.innerText = request.responseText;
+                }
+            }
+        }
+    }
+}
+
 function changeTab() {
     var someTabTriggerEl = document.querySelector('#phone-tab')
     var tab = new bootstrap.Tab(someTabTriggerEl)
@@ -73,7 +118,7 @@ function sendToken(id) {
                 if (request.responseText) {
                     tokendanger.style.display = 'block';
                     tokendanger.innerText = request.responseText;
-                }else{
+                } else {
                     tokensuccess.style.display = 'block';
                     tokensuccess.innerText = 'Token send';
                 }

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 function show($stuff)
 {
@@ -15,14 +15,40 @@ function esc($str)
 
 function redirect($path)
 {
-	header("Location: " . ROOT."/".$path);
+	header("Location: " . ROOT . "/" . $path);
 	die;
 }
 
-function getCreatorName($id){
+function getCreatorName($id)
+{
 	$user = new User;
 	$arr['id'] = $id;
 
 	$row = $user->first($arr);
 	return $row->username;
+}
+
+function sendToken($phone)
+{
+	$_SESSION['TOKEN'] = strval(rand(100000, 999999));
+
+	$fields = json_encode(array(
+		"mobileNumber" => $phone,
+		"message" => $_SESSION['TOKEN']
+	));
+
+	$curl_session = curl_init();
+	curl_setopt($curl_session, CURLOPT_URL, "https://m183.gibz-informatik.ch/api/sms/message");
+	curl_setopt($curl_session, CURLOPT_CUSTOMREQUEST, "POST");
+	curl_setopt($curl_session, CURLOPT_POSTFIELDS, $fields);
+	curl_setopt(
+		$curl_session,
+		CURLOPT_HTTPHEADER,
+		array(
+			'Content-Type: application/json',
+			'X-Api-Key: NQAxADgAMAA2ADgAMwA2ADgAMgAyADYANAAzADQANgA5ADUA'
+		)
+	);
+	curl_exec($curl_session);
+	curl_close($curl_session);
 }
