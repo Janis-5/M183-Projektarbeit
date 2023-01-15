@@ -23,6 +23,8 @@ class Ajax
                     $user->errors['Username'] = 'Username already exists';
                 }
 
+                addToErrorLog($user->errors, $_SESSION['USER']->username);
+
                 $return = json_encode($user->errors);
                 echo $return;
                 break;
@@ -38,6 +40,8 @@ class Ajax
                 } else {
                     sendToken($row->phone);
                 }
+
+                addToErrorLog($user->errors, $_SESSION['USER']->username);
 
                 $return = json_encode($user->errors);
                 echo $return;
@@ -55,11 +59,13 @@ class Ajax
 
                 if ($row && password_verify($_POST['password'], $row->password)) {
                     $_SESSION['USER'] = $row;
+                    addToAccessLog(' User Loggt in', $_SESSION['USER']->username);
                 } else {
                     $user->errors['Login'] = "Wrong username or password";
                     $return = json_encode($user->errors);
                     echo $return;
                 }
+                addToErrorLog($user->errors, $_SESSION['USER']->username);
                 break;
         }
     }

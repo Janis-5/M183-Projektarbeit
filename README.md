@@ -61,6 +61,9 @@ Der Rest der Applikation wird nicht durch diese Funktion geschützt.
 Die Anwendung ist über die "Content-Security-Policy" geschützt. -> header("Content-Security-Policy: frame-ancestors 'none'")
 Somit kann die Seite nicht in ein Iframe geladen werden und dadurch auch nicht für clickjacking ausgenutzt werden.
 
+## Logging
+
+
 ## API
 Alle Öffentlichen Posts werden unter /api/posts/allposts.json abgespeichert
 

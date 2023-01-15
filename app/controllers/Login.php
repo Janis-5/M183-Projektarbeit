@@ -25,6 +25,7 @@ class Login
 						$_SESSION['USER'] = $row;
 						unset($_SESSION['TOKEN']);
 						unset($_SESSION['TOKENEXPIRE']);
+						addToAccessLog(' User Loggt in', $_SESSION['USER']->username);
 
 						redirect('dashboard');
 					} else {
@@ -34,6 +35,7 @@ class Login
 					$user->errors['Login'] = "Wrong username or password";
 				}
 
+				addToErrorLog($user->errors, $_SESSION['USER']->username);
 				$data['errors'] = $user->errors;
 			}
 

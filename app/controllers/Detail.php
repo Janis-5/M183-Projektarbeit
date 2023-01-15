@@ -40,6 +40,7 @@ class Detail
 			}
 
 			$data['errors'] = $comment->errors;
+			addToErrorLog($comment->errors, $_SESSION['USER']->username);
 		}
 
 		$this->view('detail', $data);

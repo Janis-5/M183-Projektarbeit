@@ -90,7 +90,7 @@ function checkLoginSimple(username, password) {
     request.onreadystatechange = function () {
         if (request.readyState == 4 && request.status == 200) {
             console.log(request.responseText.charAt(0));
-            if (request.responseText.charAt(0) == '<') {
+            if (request.responseText.charAt(0) == '<' || !request.responseText) {
                 location.reload();
             }
             const errors = JSON.parse(request.responseText);

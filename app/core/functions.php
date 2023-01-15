@@ -57,13 +57,33 @@ function sendToken($phone)
 function postsToJson($posts)
 {
 	$path = '../api/posts/allposts.json';
-	$test = dirname(__FILE__);
-
 
 	$jsonString = json_encode($posts, JSON_PRETTY_PRINT);
 	// Write in the file
 	$fp = fopen($path, 'w');
-	fwrite($fp, $jsonString);	
+	fwrite($fp, $jsonString);
 	fclose($fp);
-	//file_put_contents($path, '$jsonString');
+}
+
+function addToErrorLog($content, $user = 'System')
+{
+	if (!empty($content)) {
+		$path = '../log/error.log';
+
+		$jsonString = json_encode($content);
+		// Write in the file
+		$fp = fopen($path, 'a');
+		fwrite($fp, ' [' . date("d.m.Y, H:i:s", time()) . '][' . $user . ']' . $jsonString . "\n");
+		fclose($fp);
+	}
+}
+
+function addToAccessLog($content, $user = 'System')
+{
+	$path = '../log/access.log';
+
+	// Write in the file
+	$fp = fopen($path, 'a');
+	fwrite($fp, ' [' . date("d.m.Y, H:i:s", time()) . '][' . $user . ']' . $content . "\n");
+	fclose($fp);
 }

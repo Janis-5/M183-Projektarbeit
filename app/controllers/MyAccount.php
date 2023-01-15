@@ -28,6 +28,7 @@ class MyAccount
 					$user->errors['Token'] = "SMS Token not correct or expired";
 				}
 
+				addToErrorLog($user->errors, $_SESSION['USER']->username);
 				$data['errors'] = $user->errors;
 			}
 

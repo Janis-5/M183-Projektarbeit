@@ -35,12 +35,15 @@ class Register
 
 						$row1 = $user1->first($arr1);
 						$_SESSION['USER'] = $row1;
+
+						addToAccessLog(' User Registered', $_SESSION['USER']->username);
 						redirect('dashboard');
 					}
 				} else {
 					$user->errors['username'] = "Username already exists";
 				}
 
+				addToErrorLog($user->errors, $_SESSION['USER']->username);
 				$data['errors'] = $user->errors;
 			}
 

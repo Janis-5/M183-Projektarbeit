@@ -22,6 +22,7 @@ class NewPost
 					redirect('dashboard');
 				}
 
+				addToErrorLog($post->errors, $_SESSION['USER']->username);
 				$data['errors'] = $post->errors;
 			}
 
