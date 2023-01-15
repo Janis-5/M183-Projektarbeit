@@ -18,13 +18,14 @@ class Login
 			$row = $user->first($arr);
 
 			if ($row && password_verify($_POST['password'], $row->password)) {
-				if ($_POST['token'] == $_SESSION['TOKEN']) {
+				if ($_POST['token'] == $_SESSION['TOKEN'] && $_SESSION['TOKENEXPIRE'] > time()) {
 					$_SESSION['USER'] = $row;
 					unset($_SESSION['TOKEN']);
+					unset($_SESSION['TOKENEXPIRE']);
 
 					redirect('dashboard');
 				} else {
-					$user->errors['Token'] = "SMS Token not correct";
+					$user->errors['Token'] = "SMS Token not correct or expired";
 				}
 			} else {
 				$user->errors['Login'] = "Wrong username or password";

@@ -31,6 +31,7 @@ function getCreatorName($id)
 function sendToken($phone)
 {
 	$_SESSION['TOKEN'] = strval(rand(100000, 999999));
+	$_SESSION['TOKENEXPIRE'] = time() + 60*5;
 
 	$fields = json_encode(array(
 		"mobileNumber" => $phone,

@@ -48,8 +48,8 @@ class User
 		}
 
 		if ($checkToken) {
-			if ($data['token'] != $_SESSION['TOKEN']) {
-				$this->errors['Token'] = "SMS Token not correct";
+			if ($data['token'] != $_SESSION['TOKEN'] || $_SESSION['TOKENEXPIRE'] < time()) {
+				$this->errors['Token'] = "SMS Token not correct or expired";
 			}
 		}
 

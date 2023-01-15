@@ -78,7 +78,7 @@
                                         </div>
                                         <div class="card-footer">
                                             <?= getCreatorName($comment->creator_id) ?>
-                                            <?= date("d.m.Y, H:i", $comment->creation_date) ?>
+                                            <?= date("d.m.Y, H:i:s", $comment->creation_date) ?>
                                         </div>
                                     </div>
                             <? }

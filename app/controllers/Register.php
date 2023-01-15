@@ -27,6 +27,7 @@ class Register
 						$_POST['password'] = password_hash($_POST['password'], PASSWORD_ARGON2I);
 						$user->insert($_POST);
 						unset($_SESSION['TOKEN']);
+						unset($_SESSION['TOKENEXPIRE']);
 
 						//Auto Login after Register
 						$user1 = new User;
