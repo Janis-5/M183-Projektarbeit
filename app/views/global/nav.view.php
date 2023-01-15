@@ -25,6 +25,10 @@
                     <? } ?>
 
                     <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="<?= ROOT ?>/myaccount">My Account</a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link" href="<?= ROOT ?>/logout">Logout</a>
                     </li>
                 <? } ?>

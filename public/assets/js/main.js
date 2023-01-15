@@ -116,9 +116,9 @@ function sendToken(id) {
             }*/
         }
 
-        console.log("test1");
+        //console.log("test1");
     } else {
-        console.log("test2");
+        //console.log("test2");
         phonealert.style.display = 'block';
         phonealert.innerText = 'Invalid Format';
     }
