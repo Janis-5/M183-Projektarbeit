@@ -89,7 +89,6 @@ function checkLoginSimple(username, password) {
 
     request.onreadystatechange = function () {
         if (request.readyState == 4 && request.status == 200) {
-            console.log(request.responseText.charAt(0));
             if (request.responseText.charAt(0) == '<' || !request.responseText) {
                 location.reload();
             }
@@ -142,15 +141,10 @@ function sendToken(id) {
                     tokensuccess.style.display = 'block';
                     tokensuccess.innerText = 'Token send';
                 }
-            }/*else{
-                tokendanger.style.display = 'block';
-                tokendanger.innerText = 'Request Faild, try again later';
-            }*/
+            }
         }
-
-        //console.log("test1");
     } else {
-        //console.log("test2");
+
         phonealert.style.display = 'block';
         phonealert.innerText = 'Invalid Format';
     }

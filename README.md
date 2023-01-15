@@ -62,7 +62,11 @@ Die Anwendung ist über die "Content-Security-Policy" geschützt. -> header("Con
 Somit kann die Seite nicht in ein Iframe geladen werden und dadurch auch nicht für clickjacking ausgenutzt werden.
 
 ## Logging
-
+Im Ordner /log/ befinden sich 2 Dateien
+- error.log
+- access.log
+Im Error Log werden alle Fehlermeldungen aufgezeichnet die ein User ausgeführt hat.
+Im Access Log werden alle erfolgreichen Logins und Registrierungen ausfgeführt.
 
 ## API
 Alle Öffentlichen Posts werden unter /api/posts/allposts.json abgespeichert

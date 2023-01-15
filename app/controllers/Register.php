@@ -43,7 +43,7 @@ class Register
 					$user->errors['username'] = "Username already exists";
 				}
 
-				addToErrorLog($user->errors, $_SESSION['USER']->username);
+				addToErrorLog($user->errors);
 				$data['errors'] = $user->errors;
 			}
 

@@ -35,7 +35,7 @@ class Login
 					$user->errors['Login'] = "Wrong username or password";
 				}
 
-				addToErrorLog($user->errors, $_SESSION['USER']->username);
+				addToErrorLog($user->errors);
 				$data['errors'] = $user->errors;
 			}
 

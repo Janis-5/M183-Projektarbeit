@@ -23,7 +23,7 @@ class Ajax
                     $user->errors['Username'] = 'Username already exists';
                 }
 
-                addToErrorLog($user->errors, $_SESSION['USER']->username);
+                addToErrorLog($user->errors);
 
                 $return = json_encode($user->errors);
                 echo $return;
@@ -41,7 +41,7 @@ class Ajax
                     sendToken($row->phone);
                 }
 
-                addToErrorLog($user->errors, $_SESSION['USER']->username);
+                addToErrorLog($user->errors);
 
                 $return = json_encode($user->errors);
                 echo $return;
@@ -65,7 +65,7 @@ class Ajax
                     $return = json_encode($user->errors);
                     echo $return;
                 }
-                addToErrorLog($user->errors, $_SESSION['USER']->username);
+                addToErrorLog($user->errors);
                 break;
         }
     }
