@@ -9,31 +9,35 @@ class Login
 
 	public function index()
 	{
-		$data = [];
+		if (!empty($_SESSION['USER'])) {
+			redirect('dashboard');
+		} else {
+			$data = [];
 
-		if ($_SERVER['REQUEST_METHOD'] == "POST") {
-			$user = new User;
-			$arr['username'] = $_POST['username'];
+			if ($_SERVER['REQUEST_METHOD'] == "POST") {
+				$user = new User;
+				$arr['username'] = $_POST['username'];
 
-			$row = $user->first($arr);
+				$row = $user->first($arr);
 
-			if ($row && password_verify($_POST['password'], $row->password)) {
-				if ($_POST['token'] == $_SESSION['TOKEN'] && $_SESSION['TOKENEXPIRE'] > time()) {
-					$_SESSION['USER'] = $row;
-					unset($_SESSION['TOKEN']);
-					unset($_SESSION['TOKENEXPIRE']);
+				if ($row && password_verify($_POST['password'], $row->password)) {
+					if ($_POST['token'] == $_SESSION['TOKEN'] && $_SESSION['TOKENEXPIRE'] > time()) {
+						$_SESSION['USER'] = $row;
+						unset($_SESSION['TOKEN']);
+						unset($_SESSION['TOKENEXPIRE']);
 
-					redirect('dashboard');
+						redirect('dashboard');
+					} else {
+						$user->errors['Token'] = "SMS Token not correct or expired";
+					}
 				} else {
-					$user->errors['Token'] = "SMS Token not correct or expired";
+					$user->errors['Login'] = "Wrong username or password";
 				}
-			} else {
-				$user->errors['Login'] = "Wrong username or password";
+
+				$data['errors'] = $user->errors;
 			}
 
-			$data['errors'] = $user->errors;
+			$this->view('login', $data);
 		}
-
-		$this->view('login', $data);
 	}
 }

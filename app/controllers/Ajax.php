@@ -46,6 +46,21 @@ class Ajax
             case 'sendToken':
                 sendToken($_POST['phone']);
                 break;
+
+            case 'checkLoginSimple':
+                $user = new User;
+                $arr['username'] = $_POST['username'];
+
+                $row = $user->first($arr);
+
+                if ($row && password_verify($_POST['password'], $row->password)) {
+                    $_SESSION['USER'] = $row;
+                } else {
+                    $user->errors['Login'] = "Wrong username or password";
+                    $return = json_encode($user->errors);
+                    echo $return;
+                }
+                break;
         }
     }
 }

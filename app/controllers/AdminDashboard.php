@@ -9,7 +9,7 @@ class AdminDashboard
 
 	public function index()
 	{
-		if (empty($_SESSION['USER']) && $_SESSION['USER']->isadmin !=1) {
+		if (empty($_SESSION['USER']) && $_SESSION['USER']->isadmin != 1) {
 			redirect('dashboard');
 		} else {
 			$data = [];
@@ -23,6 +23,10 @@ class AdminDashboard
 
 				if (!empty($_POST['id'])) {
 					$post->update($_POST['id'], $_POST);
+
+					$jsonposts = new Post;
+					$arr['status'] = '1';
+					postsToJson($jsonposts->where($arr));
 				}
 
 				redirect('admindashboard');

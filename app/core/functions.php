@@ -31,7 +31,7 @@ function getCreatorName($id)
 function sendToken($phone)
 {
 	$_SESSION['TOKEN'] = strval(rand(100000, 999999));
-	$_SESSION['TOKENEXPIRE'] = time() + 60*5;
+	$_SESSION['TOKENEXPIRE'] = time() + 60 * 5;
 
 	$fields = json_encode(array(
 		"mobileNumber" => $phone,
@@ -52,4 +52,18 @@ function sendToken($phone)
 	);
 	curl_exec($curl_session);
 	curl_close($curl_session);
+}
+
+function postsToJson($posts)
+{
+	$path = '../api/posts/allposts.json';
+	$test = dirname(__FILE__);
+
+
+	$jsonString = json_encode($posts, JSON_PRETTY_PRINT);
+	// Write in the file
+	$fp = fopen($path, 'w');
+	fwrite($fp, $jsonString);	
+	fclose($fp);
+	//file_put_contents($path, '$jsonString');
 }

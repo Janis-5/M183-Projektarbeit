@@ -29,11 +29,3 @@ define('APP_DESC', "Project Blog");
 
 /** true means show errors **/
 define('DEBUG', true);
-
-$log_file = "/M183-Projektarbeit/log/error.log";
-  
-// setting error logging to be active
-ini_set("log_errors", TRUE); 
-  
-// setting the logging file in php.ini
-ini_set('error_log', $log_file);

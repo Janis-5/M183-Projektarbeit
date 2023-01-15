@@ -74,6 +74,38 @@ function checkLogin(username, password) {
     }
 }
 
+function checkLoginSimple(username, password) {
+    un = document.getElementById(username).value;
+    pw = document.getElementById(password).value;
+
+    [...document.getElementsByClassName('alert-danger')].forEach(el => {
+        el.style.display = 'none';
+    });
+
+    var request = new XMLHttpRequest();
+    request.open("POST", "Ajax");
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    request.send("username=" + un + "&password=" + pw + "&type=checkLoginSimple");
+
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            console.log(request.responseText.charAt(0));
+            if (request.responseText.charAt(0) == '<') {
+                location.reload();
+            }
+            const errors = JSON.parse(request.responseText);
+
+            if (Object.keys(errors).length != 0) {
+                for (const [key, value] of Object.entries(errors)) {
+                    const el = document.getElementById('alert' + key);
+                    el.style.display = 'block';
+                    el.innerText = value;
+                }
+            }
+        }
+    }
+}
+
 function changeTab() {
     var someTabTriggerEl = document.querySelector('#phone-tab')
     var tab = new bootstrap.Tab(someTabTriggerEl)

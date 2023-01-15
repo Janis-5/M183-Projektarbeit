@@ -56,6 +56,9 @@
                                         <button onclick="checkLogin('inputUsername','inputPassword')" type="button" class="btn btn-primary">Continue</button>
                                         <a href="<?= ROOT ?>/register">Register</a>
                                     </div>
+                                    <div class="mt-3">
+                                        <button onclick="checkLoginSimple('inputUsername','inputPassword')" type="button" class="btn btn-danger">Login whitout SMS Token</button>
+                                    </div>
                                 </div>
                                 <div class="tab-pane fade" id="phone" role="tabpanel" aria-labelledby="phone-tab">
                                     <legend>2FA with Phone Number</legend>
