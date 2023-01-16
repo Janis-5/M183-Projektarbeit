@@ -1,11 +1,13 @@
 # M183 Blog Projektarbeit
 
 ## Setup
-php applikation mit xampp(v3.3 funktioniert, Apache, MySQL) php shorttags müssen in der konfiguration von xampp aktiviert sein.
+PHP Applikation mit xampp(v3.3, Apache, MySQL) php shorttags müssen in der konfiguration von xampp aktiviert sein.
 
 SQL Datenbank in phpmyadmin importieren von m183_db.sql (root), geschieht leider nicht automatisch :(
 
 der Namen der Datenbank kann angepasst werden. danach muss dies aber im /app/core/config.php file ebenfalls angepasst werden
+
+weitere anpaddungen wie die ROOT Url muss auch im /app/core/config.php angepasst werden.
 
 Damit das TOTP funktioniert muss noch die TOTP PHP Library installiert werden.
 - composer muss installiert sein
@@ -79,6 +81,7 @@ Ein Weiteres Log in dieser Anwendung wäre für die Erstellung der Posts damit m
 Im Ordner /log/ befinden sich 2 Dateien
 - error.log
 - access.log
+
 Im Error Log werden alle Fehlermeldungen aufgezeichnet die ein User ausgeführt hat.
 Im Access Log werden alle erfolgreichen Logins und Registrierungen ausfgeführt.
 
