@@ -15,13 +15,11 @@ Normal:
 ### Login
 Man kann sich mit einem Usernamen sowie Passwort anmelden. Danach wird ein SMS Token gebraucht um sich zu identifizieren.
 
-Beim Login gibt es den Button "Login whitout SMS Token" diese ist nur dafür da damit man sich beim **Entwickeln** schneller einloggen kann. Sollte man diese Applikation in einer scharfen umgebung nutzen wollen ist dieser Button un ddie dazugehörenden Funktionen ein Sicherheitsrisiko.
-
-Das ist meine alternativen Login Methode ohne SMS Token.
+Beim Login gibt es den Button "Login whitout SMS Token". Damit kann man sich mit dem beim Register erstellten Recovery Code einloggen um danach die Telefonnummer zu ändern wenn man z.B sein Handy verloren hat. Das Login funktioniert alles aber die Logik dahinter ist noch nicht ganz ausgereift. Damit meine ich das der Token für immer gleich bleibt und das man nach dem einloggen mit dem Token seine Telefonnummer nicht zwingend anpassen muss. 
 
 ### Register
 Beim Registrieren wird ein Nutzernamen welchen es noch nicht in der Datenbank gibt gebraucht sowie das Passwort welches doppelt eingegeben werden muss. 
-Um sich entgültig zu Registrieren wir noch eine Telefonnummer gebraucht welche man über das SMS-Token bestätigt und nur dann kan ein Neuer Nutzer Registriert werden.
+Um sich entgültig zu Registrieren wir noch eine Telefonnummer gebraucht welche man über das SMS-Token bestätigt und nur dann kan ein Neuer Nutzer Registriert werden. Nach dem Registrieren wird einem noch ein Recovery Token ausgegeben welches man nutzen kann um sich ohne eine Telefonnummer einzuloggen.
 
 ### Telefonnummer Anpassen
 Beim Menüpunkt My Account kann die Telefonnummer angepasst werden. Auch da muss das SMS Token korrekt sein um die Nummer zu ändern.
@@ -63,7 +61,9 @@ Somit kann die Seite nicht in ein Iframe geladen werden und dadurch auch nicht f
 
 ## Logging
 ### Konzept
+General in Applikationen mit Userzugriffen is es fast notwendig ein Error sowie auch ein Access log zu haben. Im Error Log sollen alle fahler welche der Server oder auch der Nutzer hat protokoliert werden um fü den Support oder den Entwickler aufmerksam zu machen un den Fehler zu beheben. Das Acces Log dient zur protokolierung der Erfolgreichen Login Zugriffe auf die Applikation. 
 
+Ein Weiteres Log in dieser Anwendung wäre für die Erstellung der Posts damit man sehen kann wann und von wem diese erstellt wurden. Klar kann man diese Daten auch in der Datenbank sehen jedoch ist es in einem Error Log einfacher
 
 ### In Applikation
 Im Ordner /log/ befinden sich 2 Dateien
