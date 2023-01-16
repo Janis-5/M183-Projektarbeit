@@ -1,19 +1,25 @@
 # M183 Blog Projektarbeit
 
 ## Setup
-php applikation mit xampp (v3.3 funktioniert) php shorttags müssen in der konfiguration von xampp aktiviert sein.
+php applikation mit xampp(v3.3 funktioniert, Apache, MySQL) php shorttags müssen in der konfiguration von xampp aktiviert sein.
 
-SQL Datenbank in phpmyadmin importieren von database.sql (root)
+SQL Datenbank in phpmyadmin importieren von m183_db.sql (root), geschieht leider nicht automatisch :(
 
 der Namen der Datenbank kann angepasst werden. danach muss dies aber im /app/core/config.php file ebenfalls angepasst werden
 
 Damit das TOTP funktioniert muss noch die TOTP PHP Library installiert werden.
 - composer muss installiert sein
-- inm root Ordner "composer require spomky-labs/otphp"
+- im root Ordner "composer require spomky-labs/otphp"
 
 ### User
 - Admin: 
+    - bn: Admin
+    - pw: Pa$$s0rd 
+    - Recovery Token: NERFvdbklXfcSjn2
 - Normal: 
+    - bn: Normal
+    - pw: Pa$$s0rd 
+    - Recovery Token: rG3WsnV7ZbDlih4O
 
 ## Authentifizierung
 ### Login
