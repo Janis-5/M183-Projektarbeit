@@ -1,1 +1,11 @@
 
+ [16.01.2023, 08:37:03][System]{"Username":"Username should be between 3 and 16 characters in length and schould only contain alphabetic, numeric, '-' and '_' characters."}
+ [16.01.2023, 08:44:44][System]{"Token":"SMS Token not correct or expired"}
+ [16.01.2023, 09:11:27][System]{"PasswordRepeat":"Password and Password Repeat do not match"}
+ [16.01.2023, 09:11:32][System]{"PasswordRepeat":"Password and Password Repeat do not match"}
+ [16.01.2023, 09:15:16][System]{"username":"Username already exists"}
+ [16.01.2023, 09:24:54][System]{"username":"Username already exists"}
+ [16.01.2023, 10:53:36][System]{"Token":"SMS Token not correct or expired"}
+ [16.01.2023, 10:54:58][System]{"Token":"SMS Token not correct or expired"}
+ [16.01.2023, 10:58:08][System]{"Token":"SMS Token not correct or expired"}
+ [16.01.2023, 11:01:03][System]{"Token":"SMS Token not correct or expired"}

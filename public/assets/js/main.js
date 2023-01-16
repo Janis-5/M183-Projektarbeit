@@ -29,6 +29,48 @@ function checkRegister(username, password, passwordRepeat) {
     }
 }
 
+function registUser(username, password, passwordRepeat, phone, token) {
+    un = document.getElementById(username).value;
+    pw = document.getElementById(password).value;
+    pwr = document.getElementById(passwordRepeat).value;
+    ph = document.getElementById(phone).value;
+    to = document.getElementById(token).value;
+
+    [...document.getElementsByClassName('alert-danger')].forEach(el => {
+        el.style.display = 'none';
+    });
+
+    var request = new XMLHttpRequest();
+    request.open("POST", "Ajax");
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    request.send("username=" + un + "&password=" + pw + "&passwordrepeat=" + pwr + "&phone=" + ph + "&token=" + to + "&type=registUser");
+
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+
+            console.log(request.responseText);
+            if (request.responseText.startsWith("Token:")) {
+                document.getElementById('recovery_code').innerText = request.responseText;
+
+                let someTabTriggerEl = document.querySelector('#recovery-tab')
+                let tab = new bootstrap.Tab(someTabTriggerEl)
+
+                tab.show()
+            } else {
+                const errors = JSON.parse(request.responseText);
+
+                if (Object.keys(errors).length != 0) {
+                    for (const [key, value] of Object.entries(errors)) {
+                        const el = document.getElementById('alert' + key);
+                        el.style.display = 'block';
+                        el.innerText = value;
+                    }
+                }
+            }
+        }
+    }
+}
+
 function checkLogin(username, password) {
     const tokensuccess = document.getElementById('successToken');
     tokensuccess.style.display = 'none';

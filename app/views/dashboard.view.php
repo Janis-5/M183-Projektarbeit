@@ -39,7 +39,7 @@
                                         <? } elseif ($post->status == 1) { ?>
                                             <span class="badge text-bg-primary status">Published</span>
                                         <? } ?>
-                                        <h5 class="card-title"><?= $post->title ?></h5>
+                                        <h5 class="card-title"><?= htmlspecialchars($post->title) ?></h5>
                                     </div>
                                     <div class="card-footer">
                                         <form method="POST">

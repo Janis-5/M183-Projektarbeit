@@ -54,14 +54,18 @@ Passwörter werden mit Argon2 gehasht und so in der Datenbank abgespeichert. Arg
 
 ## Sicherheit
 ### XSS
-XSS attacken werden bei den Kommentaren durch die php htmlspecialchars() funktion verhindert.
-Der Rest der Applikation wird nicht durch diese Funktion geschützt.
+Alle Ausgaben welche durch User erstellt werden können werden durch die php htmlspecialchars() funktion ausgegeben.
+Das bedeutet das falls dort ein Skript eingebaut ist, dies nicht ausgeführt wird.
 
 ### Clickjacking
 Die Anwendung ist über die "Content-Security-Policy" geschützt. -> header("Content-Security-Policy: frame-ancestors 'none'")
 Somit kann die Seite nicht in ein Iframe geladen werden und dadurch auch nicht für clickjacking ausgenutzt werden.
 
 ## Logging
+### Konzept
+
+
+### In Applikation
 Im Ordner /log/ befinden sich 2 Dateien
 - error.log
 - access.log

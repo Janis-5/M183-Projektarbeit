@@ -28,9 +28,6 @@ class Detail
 		if ($_SERVER['REQUEST_METHOD'] == "POST") {
 			$comment = new Comment;
 
-			//XSS Prevention
-			$_POST['content'] = htmlspecialchars($_POST['content']);
-
 			if ($comment->validate($_POST) && !empty($_SESSION['USER'])) {
 				$_POST["creator_id"] = strval($_SESSION['USER']->id);
 				$_POST["post_id"] = strval($_GET['post']);

@@ -28,8 +28,8 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h6 class="card-subtitle mb-2 text-muted"><?= getCreatorName($post->creator_id) ?></h6>
-                                    <h5 class="card-title"><?= $post->title ?></h5>
-                                    <p class="card-text"><?= $post->description ?></p>
+                                    <h5 class="card-title"><?= htmlspecialchars($post->title) ?></h5>
+                                    <p class="card-text"><?= htmlspecialchars($post->description) ?></p>
                                 </div>
                             </div>
                         </div>
@@ -74,7 +74,7 @@
                                 <? foreach ($comments as $comment) { ?>
                                     <div class="card mb-3">
                                         <div class="card-body">
-                                            <?= $comment->content ?>
+                                            <?= htmlspecialchars($comment->content) ?>
                                         </div>
                                         <div class="card-footer">
                                             <?= getCreatorName($comment->creator_id) ?>

@@ -25,6 +25,7 @@ class Register
 				if (!$row) {
 					if ($user->validate($_POST, true)) {
 						$_POST['password'] = password_hash($_POST['password'], PASSWORD_ARGON2I);
+						$_POST['recovery_code'] = generateRandomString(16);
 						$user->insert($_POST);
 						unset($_SESSION['TOKEN']);
 						unset($_SESSION['TOKENEXPIRE']);
@@ -38,6 +39,7 @@ class Register
 
 						addToAccessLog(' User Registered', $_SESSION['USER']->username);
 						redirect('dashboard');
+						//echo '<script>alert(Recovery Code: '.$_POST['recovery_code'].')</script>';
 					}
 				} else {
 					$user->errors['username'] = "Username already exists";

@@ -14,6 +14,7 @@ class User
 		'username',
 		'password',
 		'phone',
+		'recovery_code',
 	];
 
 	public function validate($data, $checkToken = false, $checkPhone = false)

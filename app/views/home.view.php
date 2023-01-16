@@ -32,7 +32,7 @@
                                         <?= getCreatorName($post->creator_id) ?>
                                     </div>
                                     <div class="card-body">
-                                        <h5 class="card-title"><?= $post->title ?></h5>
+                                        <h5 class="card-title"><?= htmlspecialchars($post->title) ?></h5>
                                     </div>
                                     <div class="card-footer">
                                         <a class="btn btn-primary" href="<?= ROOT ?>/detail?post=<?= $post->id ?>">Detail</a>

@@ -30,6 +30,9 @@
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="phone-tab" data-bs-toggle="tab" data-bs-target="#phone" type="button" role="tab" aria-controls="phone" aria-selected="false">Phone</button>
                             </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="recovery-tab" data-bs-toggle="tab" data-bs-target="#recovery" type="button" role="tab" aria-controls="recovery" aria-selected="false">Recovery</button>
+                            </li>
                         </ul>
 
                         <form method="POST">
@@ -93,9 +96,20 @@
                                         <div class="form-text">
                                             e.g 123456
                                         </div>
+                                        <div id="alertToken" class="alert alert-danger" role="alert" style="display: none;"></div>
                                     </div>
                                     <div class="mt-3">
-                                        <button type="button" onclick="form.submit()" class="btn btn-primary">Register</button>
+                                        <button type="button" onclick="registUser('inputUsername','inputPassword','inputPasswordRepeat', 'inputPhone', 'inputToken')" class="btn btn-primary">Register</button>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="recovery" role="tabpanel" aria-labelledby="recovery-tab">
+                                    <legend>Recovery Code</legend>
+                                    <div class="form-text">
+                                            Save this Code incase you lose access to phone number.
+                                        </div>
+                                    <div class="mt-3" id="recovery_code"></div>
+                                    <div class="mt-3">
+                                        <button type="button" onclick="window.location.href = 'dashboard'" class="btn btn-primary">To Dashboard</button>
                                     </div>
                                 </div>
                             </div>
