@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Recovery</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
@@ -42,7 +42,7 @@
 
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade show active" id="cred" role="tabpanel" aria-labelledby="cred-tab">
-                                    <legend>Login</legend>
+                                    <legend>Login with Recovery Code</legend>
                                     <div class="mb-2">
                                         <label for="inputUsername" class="form-label">Username</label>
                                         <input type="text" class="form-control" id="inputUsername" name="username" required>
@@ -51,13 +51,14 @@
                                         <label for="inputPassword" class="form-label">Password</label>
                                         <input type="password" class="form-control" id="inputPassword" name="password" required>
                                     </div>
-                                    <div class="mt-3">
-                                        <div id="alertLogin" class="alert alert-danger" role="alert" style="display: none;"></div>
-                                        <button onclick="checkLogin('inputUsername','inputPassword')" type="button" class="btn btn-primary">Continue</button>
-                                        <a href="<?= ROOT ?>/register">Register</a>
+                                    <div class="mb-2">
+                                        <label for="inputRecovery" class="form-label">Recovery Code</label>
+                                        <input type="text" class="form-control" id="inputRecovery" name="recovery_code" required>
                                     </div>
                                     <div class="mt-3">
-                                        <button onclick="window.location.href = 'recovery'" type="button" class="btn btn-secondary">Login whitout SMS Token</button>
+                                        <div id="alertLogin" class="alert alert-danger" role="alert" style="display: none;"></div>
+                                        <button type="submit" class="btn btn-primary">Login with Recovery Code</button>
+                                        <a href="<?= ROOT ?>/login">Login</a>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="phone" role="tabpanel" aria-labelledby="phone-tab">
