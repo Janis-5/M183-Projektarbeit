@@ -1,5 +1,7 @@
 <?php
+
 use OTPHP\TOTP;
+
 require '../vendor/autoload.php';
 /**
  * Ajax class
@@ -113,20 +115,36 @@ class Ajax
                 $otp = TOTP::create($_SESSION['SECRET']); // create TOTP object from the secret.
                 $check = $otp->verify($_POST['totp']); // Returns true if the input is verified, otherwise false.
 
-				if ($check) {
+                if ($check) {
                     $arr['secret'] = $_SESSION['SECRET'];
                     $user->update($_SESSION['USER']->id, $arr);
                     $_SESSION['USER']->secret = $_SESSION['SECRET'];
-					unset($_SESSION['SECRET']);
+                    unset($_SESSION['SECRET']);
 
-					//redirect('dashboard');
-				} else {
-					$user->errors['Totp'] = "TOTP Token not correct";
-				}
+                    //redirect('dashboard');
+                } else {
+                    $user->errors['Totp'] = "TOTP Token not correct";
+                }
 
-				addToErrorLog($user->errors, $_SESSION['USER']->username);
+                addToErrorLog($user->errors, $_SESSION['USER']->username);
 
                 $return = json_encode($user->errors);
+                echo $return;
+                break;
+
+            case 'checkTotp':
+                $post = new Post;
+
+                $otp = TOTP::create($_SESSION['USER']->secret); // create TOTP object from the secret.
+                $check = $otp->verify($_POST['totp']); // Returns true if the input is verified, otherwise false.
+
+                if (!$check) {
+                    $post->errors['Totp'] = "TOTP Token not correct";
+                }
+
+                addToErrorLog($post->errors, $_SESSION['USER']->username);
+
+                $return = json_encode($post->errors);
                 echo $return;
                 break;
         }

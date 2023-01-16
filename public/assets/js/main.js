@@ -222,3 +222,33 @@ function setTotp(totp_id) {
         }
     }
 }
+
+function changeStatus(el, status) {
+    stat = document.getElementById(status).value;
+
+    console.log(stat)
+    if (stat == 1) {
+    
+        let token = prompt('TOTP Token')
+
+        var request = new XMLHttpRequest();
+        request.open("POST", "Ajax");
+        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        request.send("totp=" + token + "&type=checkTotp");
+    
+        request.onreadystatechange = function () {
+            if (request.readyState == 4 && request.status == 200) {
+                console.log(request.responseText);
+                if (request.responseText.charAt(0) == '[' || !request.responseText) {
+                    el.form.submit();
+                }else{
+                    alert('TOTP Token not correct');
+                    location.reload();
+                }
+                
+            }
+        }
+    }else{
+        el.form.submit();
+    }
+}

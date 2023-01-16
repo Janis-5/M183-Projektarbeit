@@ -7,9 +7,13 @@ SQL Datenbank in phpmyadmin importieren von database.sql (root)
 
 der Namen der Datenbank kann angepasst werden. danach muss dies aber im /app/core/config.php file ebenfalls angepasst werden
 
+Damit das TOTP funktioniert muss noch die TOTP PHP Library installiert werden.
+- composer muss installiert sein
+- inm root Ordner "composer require spomky-labs/otphp"
+
 ### User
-Admin: 
-Normal: 
+- Admin: 
+- Normal: 
 
 ## Authentifizierung
 ### Login
@@ -78,6 +82,11 @@ Alle Öffentlichen Posts werden unter /api/posts/allposts.json abgespeichert
 ## Bibliotheken
 Diese Applikation verwendet HTML, JS, CSS und PHP. 
 Die einzige Zusätzliche Bibliothek ist Bootstrap v.5.2.3. Die CSS Library wird für das ganze Design der Applikation verwendet.
+
+Zudem habe ich fürs TOTP die OTP Library v11.1 (https://github.com/Spomky-Labs/otphp) verwendet. Diese beinhaltet alle notwenigen funktionen um TOTP in meiner Applikation umsetzten zu können. Zum einen können secrets erstellt werden und diese dann mit dem On-Time-Password abgegelichen werden. Dazu kann zuerst ein QR Code erstellt werden mit welchem man z.B bei Google Authenticator ein neuer Eintrag hinzufügen kann.
+
+Zusätzlich habe ich noch für den QR code die Google charts API verwendet.
+https://developers.google.com/chart/infographics/docs/qr_codes
 
 ## Notizen
 ### Posts Status

@@ -44,7 +44,7 @@
                                     <div class="card-footer">
                                         <form method="POST">
                                             <input type="hidden" name="id" value="<?= $post->id ?>">
-                                            <select name="status" class="form-select" aria-label="Default select example" onchange="this.form.submit()">
+                                            <select id="selectStatus" name="status" class="form-select" aria-label="Default select example" onchange="changeStatus(this, 'selectStatus')">
                                                 <option <? if ($post->status == 0) { ?>selected<? } ?> value="0">Hidden</option>
                                                 <option <? if ($post->status == 1) { ?>selected<? } ?> value="1">Published</option>
                                                 <option <? if ($post->status == 2) { ?>selected<? } ?> value="2">Deleted</option>
