@@ -1,1 +1,23 @@
-false
+[
+    {
+        "id": 8,
+        "title": "Post 3",
+        "description": "Post 3 Description",
+        "status": 1,
+        "creator_id": 20
+    },
+    {
+        "id": 7,
+        "title": "Post 2",
+        "description": "Post 2 Description",
+        "status": 0,
+        "creator_id": 21
+    },
+    {
+        "id": 6,
+        "title": "Post 1",
+        "description": "Post 1 Description",
+        "status": 1,
+        "creator_id": 21
+    }
+]
