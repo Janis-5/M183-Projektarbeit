@@ -21,7 +21,7 @@ class AdminDashboard
 			if ($_SERVER['REQUEST_METHOD'] == "POST") {
 				$post = new Post;
 
-				if (!empty($_POST['id'])) {
+				if (!empty($_POST['id']) && $_POST['status'] != 1) {
 					$post->update($_POST['id'], $_POST);
 
 					$jsonposts = new Post;

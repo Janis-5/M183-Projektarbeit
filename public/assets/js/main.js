@@ -223,8 +223,9 @@ function setTotp(totp_id) {
     }
 }
 
-function changeStatus(el, status) {
+function changeStatus(el, status, pid) {
     stat = document.getElementById(status).value;
+    id = document.getElementById(pid).value;
 
     console.log(stat)
     if (stat == 1) {
@@ -234,15 +235,16 @@ function changeStatus(el, status) {
         var request = new XMLHttpRequest();
         request.open("POST", "Ajax");
         request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        request.send("totp=" + token + "&type=checkTotp");
+        request.send("totp=" + token + "&id=" + id +"&type=setStatusPublished");
     
         request.onreadystatechange = function () {
             if (request.readyState == 4 && request.status == 200) {
                 console.log(request.responseText);
                 if (request.responseText.charAt(0) == '[' || !request.responseText) {
-                    el.form.submit();
+                    location.reload();
                 }else{
-                    alert('TOTP Token not correct');
+                    const errors = JSON.parse(request.responseText);
+                    alert(errors.Totp);
                     location.reload();
                 }
                 

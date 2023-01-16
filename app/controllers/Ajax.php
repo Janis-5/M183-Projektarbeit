@@ -132,14 +132,24 @@ class Ajax
                 echo $return;
                 break;
 
-            case 'checkTotp':
+            case 'setStatusPublished':
                 $post = new Post;
+                if (!empty($_SESSION['USER']->secret)) {
+                    $otp = TOTP::create($_SESSION['USER']->secret); // create TOTP object from the secret.
+                    $check = $otp->verify($_POST['totp']); // Returns true if the input is verified, otherwise false.
 
-                $otp = TOTP::create($_SESSION['USER']->secret); // create TOTP object from the secret.
-                $check = $otp->verify($_POST['totp']); // Returns true if the input is verified, otherwise false.
+                    if (!$check) {
+                        $post->errors['Totp'] = "TOTP Token not correct";
+                    } else {
+                        $_POST['status'] = '1';
+                        $post->update($_POST['id'], $_POST);
 
-                if (!$check) {
-                    $post->errors['Totp'] = "TOTP Token not correct";
+                        $jsonposts = new Post;
+                        $arr['status'] = '1';
+                        postsToJson($jsonposts->where($arr));
+                    }
+                }else{
+                    $post->errors['Totp'] = "TOTP Authentication not set change in My Account!";
                 }
 
                 addToErrorLog($post->errors, $_SESSION['USER']->username);

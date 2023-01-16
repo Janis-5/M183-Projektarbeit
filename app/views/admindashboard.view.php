@@ -43,8 +43,8 @@
                                     </div>
                                     <div class="card-footer">
                                         <form method="POST">
-                                            <input type="hidden" name="id" value="<?= $post->id ?>">
-                                            <select id="selectStatus" name="status" class="form-select" aria-label="Default select example" onchange="changeStatus(this, 'selectStatus')">
+                                            <input id="inputId" type="hidden" name="id" value="<?= $post->id ?>">
+                                            <select id="selectStatus" name="status" class="form-select" aria-label="Default select example" onchange="changeStatus(this, 'selectStatus', 'inputId')">
                                                 <option <? if ($post->status == 0) { ?>selected<? } ?> value="0">Hidden</option>
                                                 <option <? if ($post->status == 1) { ?>selected<? } ?> value="1">Published</option>
                                                 <option <? if ($post->status == 2) { ?>selected<? } ?> value="2">Deleted</option>
