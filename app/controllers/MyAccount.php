@@ -1,5 +1,6 @@
 <?php
-
+use OTPHP\TOTP;
+require '../vendor/autoload.php';
 /**
  * myaccount class
  */
@@ -13,6 +14,25 @@ class MyAccount
 			redirect('login');
 		} else {
 			$data = [];
+
+			if(empty($_SESSION['USER']->secret)){
+				// A random secret will be generated from this.
+				// You should store the secret with the user for verification.
+				$otp = TOTP::create();
+				$secret = $otp->getSecret();
+				//echo "The OTP secret is: {$secret}\n";
+				$_SESSION['SECRET'] = $secret;
+
+				$otp = TOTP::create($secret);
+				//echo "The current OTP is: {$otp->now()}\n";
+
+				// Note: You must set label before generating the QR code
+				$otp->setLabel('2FA M183 Janis Arnold');
+				$data['totpqr'] = $otp->getQrCodeUri(
+					'https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl=[DATA]&chld=M',
+					'[DATA]'
+				);
+			}
 
 			if ($_SERVER['REQUEST_METHOD'] == "POST") {
 

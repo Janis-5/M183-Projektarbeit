@@ -191,3 +191,34 @@ function sendToken(id) {
         phonealert.innerText = 'Invalid Format';
     }
 }
+
+function setTotp(totp_id) {
+    totp = document.getElementById(totp_id).value;
+
+    [...document.getElementsByClassName('alert-danger')].forEach(el => {
+        el.style.display = 'none';
+    });
+
+    var request = new XMLHttpRequest();
+    request.open("POST", "Ajax");
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    request.send("totp=" + totp + "&type=setTotp");
+
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            //console.log(request.responseText);
+            if (request.responseText.charAt(0) == '<' || !request.responseText) {
+                location.reload();
+            }
+            const errors = JSON.parse(request.responseText);
+
+            if (Object.keys(errors).length != 0) {
+                for (const [key, value] of Object.entries(errors)) {
+                    const el = document.getElementById('alert' + key);
+                    el.style.display = 'block';
+                    el.innerText = value;
+                }
+            }
+        }
+    }
+}

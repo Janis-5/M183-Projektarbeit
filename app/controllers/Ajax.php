@@ -1,5 +1,6 @@
 <?php
-
+use OTPHP\TOTP;
+require '../vendor/autoload.php';
 /**
  * Ajax class
  */
@@ -51,12 +52,10 @@ class Ajax
                         $row1 = $user1->first($arr1);
                         $_SESSION['USER'] = $row1;
 
-                        $return = 'Token: '.$_POST['recovery_code'];
+                        $return = 'Token: ' . $_POST['recovery_code'];
 
                         addToAccessLog(' User Registered', $_SESSION['USER']->username);
-                        //redirect('dashboard');
-                        //echo '<script>alert(Recovery Code: '.$_POST['recovery_code'].')</script>';
-                    }else{
+                    } else {
                         $return = json_encode($user->errors);
                     }
                 } else {
@@ -106,6 +105,29 @@ class Ajax
                     echo $return;
                 }
                 addToErrorLog($user->errors);
+                break;
+
+            case 'setTotp':
+                $user = new User;
+
+                $otp = TOTP::create($_SESSION['SECRET']); // create TOTP object from the secret.
+                $check = $otp->verify($_POST['totp']); // Returns true if the input is verified, otherwise false.
+
+				if ($check) {
+                    $arr['secret'] = $_SESSION['SECRET'];
+                    $user->update($_SESSION['USER']->id, $arr);
+                    $_SESSION['USER']->secret = $_SESSION['SECRET'];
+					unset($_SESSION['SECRET']);
+
+					//redirect('dashboard');
+				} else {
+					$user->errors['Totp'] = "TOTP Token not correct";
+				}
+
+				addToErrorLog($user->errors, $_SESSION['USER']->username);
+
+                $return = json_encode($user->errors);
+                echo $return;
                 break;
         }
     }

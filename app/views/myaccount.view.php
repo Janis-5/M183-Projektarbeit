@@ -30,7 +30,7 @@
                                 </div>
                             <?php endif; ?>
 
-                            <h2><?= $_SESSION['USER']->username?> Account</h2>
+                            <h2><?= $_SESSION['USER']->username ?> Account</h2>
                             <legend>Change 2FA Phone Number</legend>
                             <div class="mb-2">
                                 <label for="inputPhone" class="form-label">Phone Number</label>
@@ -55,6 +55,40 @@
                             <div class="mt-3">
                                 <button type="button" onclick="form.submit()" class="btn btn-primary">Change Number</button>
                             </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 offset-md-4">
+                        <form method="POST">
+                            <legend>TOTP</legend>
+                            <? if (!empty($totpqr)) { ?>
+                                <div class="mt-3">
+                                    <div class="form-text">
+                                        TOTP not yet set
+                                    </div>
+                                </div>
+                                <img src="<?= $totpqr ?>">
+                                <div>
+                                    <label for="inputTotp" class="form-label">TOTP TOKEN</label>
+                                    <input type="number" class="form-control" id="inputTotp" name="totp">
+                                    <div class="form-text">
+                                        e.g 123456
+                                    </div>
+                                    <div id="alertTotp" class="alert alert-danger" role="alert" style="display: none;"></div>
+                                </div>
+                                <div class="mt-3">
+                                    <button type="button" onclick="setTotp('inputTotp')" class="btn btn-primary">Set TOTP</button>
+                                </div>
+                            <? } else { ?>
+                                <div id="successTotp" class="alert alert-success" role="alert">
+                                    TOTP is set
+                                </div>
+                            <? } ?>
                         </form>
                     </div>
                 </div>
